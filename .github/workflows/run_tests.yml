@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: [ubuntu-latest]
     env:
-      build-directory: ./build
+      build-directory: {{runner.workspace}}/build
 
     steps:
       - uses: actions/checkout@v2
