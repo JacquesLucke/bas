@@ -16,8 +16,8 @@ jobs:
         working-directory: build
       - run: make
         working-directory: build
-      - run: ./my_test
-        working-directory: build
+        
+      - run: ./build/my_test
         
   test-windows:
     runs-on: [windows-latest]
@@ -32,4 +32,19 @@ jobs:
         working-directory: build
       - run: devenv my_core_lib.sln /build Debug
         working-directory: build
+        
       - run: .\build\Debug\my_test.exe
+    
+  test-macos:
+    runs-on: [macos-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: mkdir build
+      - run: cmake ../
+        working-directory: build
+      - run: make
+        working-directory: build
+        
+      - run: ./build/my_test
