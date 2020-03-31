@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test-linux:
     runs-on: [ubuntu-latest]
     
     steps:
@@ -18,3 +18,18 @@ jobs:
         working-directory: build
       - run: ./my_test
         working-directory: build
+        
+  test-windows:
+    runs-on: [windows-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: ilammy/msvc-dev-cmd@v1
+      
+      - run: mkdir build
+      - run: cmake ..
+        working-directory: build
+      - run: devenv my_core_lib.sln /build Debug
+        working-directory: build
+      - run: .\build\Debug\my_test.exe
