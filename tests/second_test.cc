@@ -7,5 +7,5 @@ TEST(my_test, FirstTest3) {
 
 TEST(my_test, FirstTest4) {
   EXPECT_TRUE(true);
-  EXPECT_FALSE(true);
+  EXPECT_FALSE(false);
 }
