@@ -13,6 +13,7 @@ SET(SOURCE
 )
 
 set(INSTALL_GTEST OFF)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 add_subdirectory(extern/googletest)
 
 include_directories(
