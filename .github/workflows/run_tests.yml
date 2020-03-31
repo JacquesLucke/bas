@@ -8,15 +8,15 @@ jobs:
   build:
     runs-on: [ubuntu-latest]
     env:
-      build-directory: {{runner.workspace}}/build
+      build-directory: ${{runner.workspace}}/build
 
     steps:
       - uses: actions/checkout@v2
 
       - run: mkdir build
       - run: cmake ../
-        working-directory: $${build-directory}
+        working-directory: ${{build-directory}}
       - run: make
-        working-directory: $${build-directory}
+        working-directory: ${{build-directory}}
       - run: ./my_test
-        working-directory: $${build-directory}
+        working-directory: ${{build-directory}}
