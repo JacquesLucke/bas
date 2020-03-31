@@ -13,8 +13,8 @@ jobs:
 
       - run: mkdir build
       - run: cmake ../
-        working-directory: ${{GITHUB_WORKSPACE}}/build
+        working-directory: build
       - run: make
-        working-directory: ${{GITHUB_WORKSPACE}}/build
+        working-directory: build
       - run: ./my_test
-        working-directory: ${{GITHUB_WORKSPACE}}/build
+        working-directory: build
