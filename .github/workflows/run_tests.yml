@@ -7,16 +7,14 @@ on:
 jobs:
   build:
     runs-on: [ubuntu-latest]
-    env:
-      build-directory: ${{GITHUB_WORKSPACE}}/build
-
+    
     steps:
       - uses: actions/checkout@v2
 
       - run: mkdir build
       - run: cmake ../
-        working-directory: ${{build-directory}}
+        working-directory: ${{GITHUB_WORKSPACE}}/build
       - run: make
-        working-directory: ${{build-directory}}
+        working-directory: ${{GITHUB_WORKSPACE}}/build
       - run: ./my_test
-        working-directory: ${{build-directory}}
+        working-directory: ${{GITHUB_WORKSPACE}}/build
