@@ -8,8 +8,9 @@ project(my_core_lib)
 set(CMAKE_CXX_STANDARD 11)
 
 SET(SOURCE
-    tests/first_test.cc
-    tests/second_test.cc
+    tests/test_main.cc
+
+    tests/index_range_test.cc
 )
 
 set(INSTALL_GTEST OFF)
@@ -18,7 +19,9 @@ add_subdirectory(extern/googletest)
 
 include_directories(
     extern/googletest/googletest/include/
+
+    include/
 )
 
-add_executable(my_test ${SOURCE})
-target_link_libraries(my_test gtest)
+add_executable(tests ${SOURCE})
+target_link_libraries(tests gtest)

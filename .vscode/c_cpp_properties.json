@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/include/linux",
+                "/usr/include/c++/9.3.0/tr1"
             ],
             "defines": [],
             "compilerPath": "/usr/lib/ccache/bin/clang",
