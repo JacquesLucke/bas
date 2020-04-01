@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD 11)
 SET(SOURCE
     tests/test_main.cc
 
+    tests/array_ref_test.cc
     tests/index_range_test.cc
 )
 

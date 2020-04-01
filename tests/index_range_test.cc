@@ -44,7 +44,7 @@ TEST(index_range, MultipleElementRange)
     }
 
     EXPECT_EQ(vector.size(), 4);
-    for (uint i = 0; i < 4; i++) {
+    for (size_t i = 0; i < 4; i++) {
         EXPECT_EQ(vector[i], i + 6);
     }
 }
