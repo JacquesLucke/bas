@@ -15,11 +15,11 @@ namespace my_core_lib {
  * changed.
  */
 template<typename T> class ArrayRef {
-   private:
+  private:
     const T *m_start = nullptr;
     size_t m_size = 0;
 
-   public:
+  public:
     /**
      * Create a reference to an empty array.
      * The pointer is allowed to be nullptr.
@@ -336,11 +336,11 @@ template<typename T> class ArrayRef {
  * via this reference.
  */
 template<typename T> class MutableArrayRef {
-   private:
+  private:
     T *m_start;
     size_t m_size;
 
-   public:
+  public:
     MutableArrayRef() = default;
 
     MutableArrayRef(T *start, size_t size) : m_start(start), m_size(size)

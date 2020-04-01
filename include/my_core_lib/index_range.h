@@ -7,11 +7,11 @@
 namespace my_core_lib {
 
 class IndexRange {
-   private:
+  private:
     size_t m_start = 0;
     size_t m_size = 0;
 
-   public:
+  public:
     IndexRange() = default;
 
     explicit IndexRange(size_t size) : m_start(0), m_size(size)
@@ -23,10 +23,10 @@ class IndexRange {
     }
 
     class Iterator {
-       private:
+      private:
         size_t m_current;
 
-       public:
+      public:
         Iterator(size_t current) : m_current(current)
         {
         }

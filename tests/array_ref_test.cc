@@ -1,3 +1,4 @@
+#include <array>
 #include <vector>
 
 #include "gtest/gtest.h"
@@ -5,16 +6,6 @@
 #include "my_core_lib/array_ref.h"
 
 using namespace my_core_lib;
-
-TEST(array_ref, FromSmallVector)
-{
-    std::vector<int> a = {1, 2, 3};
-    ArrayRef<int> a_ref = a;
-    EXPECT_EQ(a_ref.size(), 3);
-    EXPECT_EQ(a_ref[0], 1);
-    EXPECT_EQ(a_ref[1], 2);
-    EXPECT_EQ(a_ref[2], 3);
-}
 
 TEST(array_ref, AddConstToPointer)
 {

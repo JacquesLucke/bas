@@ -5,11 +5,12 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 project(my_core_lib)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 SET(SOURCE
     tests/test_main.cc
 
+    tests/allocator_test.cc
     tests/array_ref_test.cc
     tests/index_range_test.cc
 )
