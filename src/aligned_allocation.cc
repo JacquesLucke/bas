@@ -38,7 +38,7 @@ void aligned_free_fallback(void *pointer)
 
 static void *aligned_malloc_internal(size_t size, size_t alignment)
 {
-    return _aligned_malloc_dbg(size, alignment, __FILE__, __LINE);
+    return _aligned_malloc_dbg(size, alignment, __FILE__, __LINE__);
 }
 
 static void aligned_free_internal(void *pointer)
