@@ -78,12 +78,16 @@ static void aligned_free_internal(void *pointer)
 
 void *aligned_malloc(size_t size, size_t alignment)
 {
+    if (alignment < sizeof(void *)) {
+        alignment = sizeof(void *);
+    }
+
     return aligned_malloc_internal(size, alignment);
 }
 
 void aligned_free(void *pointer)
 {
-    return aligned_free_internal(pointer);
+    aligned_free_internal(pointer);
 }
 
 }  // namespace bas

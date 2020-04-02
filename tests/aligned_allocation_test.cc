@@ -10,6 +10,10 @@ static void test_aligned_allocation(size_t alignment)
     void *ptr2 = aligned_malloc(alignment * 32, alignment);
     void *ptr3 = aligned_malloc(71, alignment);
 
+    EXPECT_NE(ptr1, nullptr);
+    EXPECT_NE(ptr2, nullptr);
+    EXPECT_NE(ptr3, nullptr);
+
     EXPECT_TRUE(is_aligned(ptr1, alignment));
     EXPECT_TRUE(is_aligned(ptr2, alignment));
     EXPECT_TRUE(is_aligned(ptr3, alignment));
@@ -24,6 +28,10 @@ static void test_aligned_allocation_fallback(size_t alignment)
     void *ptr1 = aligned_malloc_fallback(1, alignment);
     void *ptr2 = aligned_malloc_fallback(alignment * 32, alignment);
     void *ptr3 = aligned_malloc_fallback(71, alignment);
+
+    EXPECT_NE(ptr1, nullptr);
+    EXPECT_NE(ptr2, nullptr);
+    EXPECT_NE(ptr3, nullptr);
 
     EXPECT_TRUE(is_aligned(ptr1, alignment));
     EXPECT_TRUE(is_aligned(ptr2, alignment));
