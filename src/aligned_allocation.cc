@@ -34,7 +34,7 @@ void aligned_free_fallback(void *pointer)
 
 #if defined(_WIN32)
 
-#    include <crtdgb.h>
+#    include <crtdbg.h>
 
 static void *aligned_malloc_internal(size_t size, size_t alignment)
 {
