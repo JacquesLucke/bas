@@ -264,12 +264,12 @@ template<typename T> class ArrayRef {
 
     size_t first_index(const T &search_value) const
     {
-        int index = this->first_index_try(search_value);
+        ssize_t index = this->first_index_try(search_value);
         assert(index >= 0);
         return (size_t)index;
     }
 
-    int first_index_try(const T &search_value) const
+    ssize_t first_index_try(const T &search_value) const
     {
         for (size_t i = 0; i < m_size; i++) {
             if (m_start[i] == search_value) {

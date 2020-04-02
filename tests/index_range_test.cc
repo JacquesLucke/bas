@@ -12,7 +12,7 @@ TEST(index_range, DefaultConstructor)
     EXPECT_EQ(range.size(), 0);
 
     std::vector<size_t> vector;
-    for (int value : range) {
+    for (size_t value : range) {
         vector.push_back(value);
     }
     EXPECT_EQ(vector.size(), 0);
@@ -25,7 +25,7 @@ TEST(index_range, SingleElementRange)
     EXPECT_EQ(*range.begin(), 4);
 
     std::vector<size_t> vector;
-    for (int value : range) {
+    for (size_t value : range) {
         vector.push_back(value);
     }
 
@@ -39,7 +39,7 @@ TEST(index_range, MultipleElementRange)
     EXPECT_EQ(range.size(), 4);
 
     std::vector<size_t> vector;
-    for (int value : range) {
+    for (size_t value : range) {
         vector.push_back(value);
     }
 

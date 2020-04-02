@@ -27,6 +27,7 @@ SET(BAS_TEST_SRC
     tests/allocator_test.cc
     tests/array_ref_test.cc
     tests/index_range_test.cc
+    tests/utildefines_test.cc
 )
 
 set(INSTALL_GTEST OFF)
