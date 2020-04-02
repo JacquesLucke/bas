@@ -7,9 +7,20 @@ endif()
 project(bas)
 set(CMAKE_CXX_STANDARD 17)
 
-SET(SOURCE
+SET(BAS_INCLUDES
+    include/
+)
+
+SET(BAS_SRC
+    src/aligned_allocation.cc
+)
+
+SET(BAS_TEST_SRC
+    ${BAS_SRC}
+
     tests/test_main.cc
 
+    tests/aligned_allocation_test.cc
     tests/allocator_test.cc
     tests/array_ref_test.cc
     tests/index_range_test.cc
@@ -22,8 +33,8 @@ add_subdirectory(extern/googletest)
 include_directories(
     extern/googletest/googletest/include/
 
-    include/
+    ${BAS_INCLUDES}
 )
 
-add_executable(tests ${SOURCE})
+add_executable(tests ${BAS_TEST_SRC})
 target_link_libraries(tests gtest)

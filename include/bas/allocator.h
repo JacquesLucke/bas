@@ -2,7 +2,7 @@
 
 #include <cstdlib>
 
-#include "utildefines.h"
+#include "aligned_allocation.h"
 
 namespace bas {
 
@@ -10,8 +10,7 @@ class RawAllocator {
   public:
     void *allocate(size_t size, size_t alignment) const
     {
-        assert(size % alignment == 0);
-        return aligned_alloc(alignment, size);
+        return aligned_malloc(size, alignment);
     }
 
     template<size_t Alignment> void *allocate(size_t size) const
@@ -24,9 +23,9 @@ class RawAllocator {
         return this->allocate(Size, Alignment);
     }
 
-    void free(void *ptr) const
+    void free(void *pointer) const
     {
-        free(ptr);
+        aligned_free(pointer);
     }
 };
 

@@ -18,6 +18,11 @@ template<typename T> inline uintptr_t ptr_to_int(T *ptr)
     return (uintptr_t)ptr;
 }
 
+template<typename T> inline T *int_to_ptr(uintptr_t ptr)
+{
+    return (T *)ptr;
+}
+
 template<typename T> inline bool is_aligned(T *ptr, size_t alignment)
 {
     assert(is_power_of_2(alignment));
