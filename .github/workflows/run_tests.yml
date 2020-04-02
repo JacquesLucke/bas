@@ -30,7 +30,7 @@ jobs:
       - run: mkdir build
       - run: cmake ..
         working-directory: build
-      - run: devenv my_core_lib.sln /build Debug
+      - run: devenv bas.sln /build Debug
         working-directory: build
 
       - run: .\build\Debug\tests.exe

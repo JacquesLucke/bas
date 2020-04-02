@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace my_core_lib {
+namespace bas {
 
 using std::size_t;
 
@@ -24,4 +24,4 @@ template<typename T> inline bool is_aligned(T *ptr, size_t alignment)
     return (ptr_to_int(ptr) & (alignment - 1)) == 0;
 }
 
-}  // namespace my_core_lib
+}  // namespace bas

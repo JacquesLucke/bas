@@ -8,7 +8,7 @@
 #include "index_range.h"
 #include "memory_utils.h"
 
-namespace my_core_lib {
+namespace bas {
 
 /**
  * References an array of data. The elements in the array should not be
@@ -517,4 +517,4 @@ void assert_same_size(const T1 &v1, const T2 &v2, const T3 &v3)
 #endif
 }
 
-}  // namespace my_core_lib
+}  // namespace bas

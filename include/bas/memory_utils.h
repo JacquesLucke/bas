@@ -5,7 +5,7 @@
 
 #include "utildefines.h"
 
-namespace my_core_lib {
+namespace bas {
 
 using std::copy;
 using std::copy_n;
@@ -101,4 +101,4 @@ class alignas(Alignment) AlignedBuffer {
     }
 };
 
-}  // namespace my_core_lib
+}  // namespace bas

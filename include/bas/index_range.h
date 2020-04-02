@@ -4,7 +4,7 @@
 
 #include "utildefines.h"
 
-namespace my_core_lib {
+namespace bas {
 
 class IndexRange {
   private:
@@ -166,4 +166,4 @@ class IndexRange {
     }
 };
 
-}  // namespace my_core_lib
+}  // namespace bas

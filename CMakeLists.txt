@@ -4,7 +4,7 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR "in-source builds are not allowed")
 endif()
 
-project(my_core_lib)
+project(bas)
 set(CMAKE_CXX_STANDARD 17)
 
 SET(SOURCE

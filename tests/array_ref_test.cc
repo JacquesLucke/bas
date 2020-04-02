@@ -3,9 +3,9 @@
 
 #include "gtest/gtest.h"
 
-#include "my_core_lib/array_ref.h"
+#include "bas/array_ref.h"
 
-using namespace my_core_lib;
+using namespace bas;
 
 TEST(array_ref, AddConstToPointer)
 {

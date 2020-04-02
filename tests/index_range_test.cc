@@ -2,9 +2,9 @@
 
 #include "gtest/gtest.h"
 
-#include "my_core_lib/index_range.h"
+#include "bas/index_range.h"
 
-using namespace my_core_lib;
+using namespace bas;
 
 TEST(index_range, DefaultConstructor)
 {

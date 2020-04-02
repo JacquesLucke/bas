@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 
-#include "my_core_lib/allocator.h"
+#include "bas/allocator.h"
 
-using namespace my_core_lib;
+using namespace bas;
 
 TEST(raw_allocator, AlignedAllocation)
 {

@@ -4,7 +4,7 @@
 
 #include "utildefines.h"
 
-namespace my_core_lib {
+namespace bas {
 
 class RawAllocator {
   public:
@@ -30,4 +30,4 @@ class RawAllocator {
     }
 };
 
-}  // namespace my_core_lib
+}  // namespace bas
