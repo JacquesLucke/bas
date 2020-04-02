@@ -7,6 +7,7 @@ endif()
 project(bas)
 set(CMAKE_CXX_STANDARD 17)
 
+# Enable address sanitizer.
 if(UNIX)
     SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
     SET(CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
@@ -44,3 +45,10 @@ include_directories(
 
 add_executable(tests ${BAS_TEST_SRC})
 target_link_libraries(tests gtest)
+
+# Generate many warnings.
+if(MSVC)
+  target_compile_options(tests PRIVATE /W4 /WX)
+else()
+  target_compile_options(tests PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
