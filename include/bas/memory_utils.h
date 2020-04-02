@@ -19,6 +19,13 @@ template<typename T> void construct_default(T *ptr)
     new (ptr) T();
 }
 
+template<typename T> void construct_default_n(T *ptr, size_t n)
+{
+    for (size_t i = 0; i < n; i++) {
+        new (ptr + i) T();
+    }
+}
+
 template<typename T> void destruct(T *ptr)
 {
     ptr->~T();
