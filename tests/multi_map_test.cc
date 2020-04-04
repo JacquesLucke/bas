@@ -7,7 +7,7 @@ using namespace bas;
 TEST(multi_map, DefaultConstructor)
 {
     MultiMap<int, int> map;
-    EXPECT_EQ(map.key_amount(), 0);
+    EXPECT_EQ(map.key_amount(), 0u);
 }
 
 TEST(multi_map, AddNewSingle)
