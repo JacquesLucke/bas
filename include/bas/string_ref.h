@@ -69,7 +69,7 @@ class StringRefBase {
         dst[m_size] = '\0';
     }
 
-    void copy(char *dst, uint dst_size) const
+    void copy(char *dst, size_t dst_size) const
     {
         if (m_size < dst_size) {
             this->unsafe_copy(dst);
