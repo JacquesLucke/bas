@@ -13,6 +13,12 @@ namespace bas {
 #    define BAS_NOINLINE
 #endif
 
+#ifdef __GNUC__
+#    define BAS_UNLIKELY(x) __builtin_expect(!!(x), 0)
+#else
+#    define BAS_UNLIKELY(x) (x)
+#endif
+
 using std::size_t;
 using ssize_t = std::make_signed_t<size_t>;
 
