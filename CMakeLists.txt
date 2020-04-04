@@ -36,6 +36,7 @@ SET(BAS_TEST_SRC
     tests/stack_test.cc
     tests/string_ref_test.cc
     tests/utildefines_test.cc
+    tests/vector_set_test.cc
     tests/vector_test.cc
 )
 
