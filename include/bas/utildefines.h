@@ -34,29 +34,44 @@ using std::uint64_t;
 using std::uint8_t;
 
 /* True is returned for powers of two and zero. */
-inline bool is_power_of_2(size_t x)
+template<typename IntT> inline bool is_power_of_2(IntT x)
 {
     return (x & (x - 1)) == 0;
 }
 
-template<typename T> T ceil_power_of_2(T x)
+template<typename IntT> IntT ceil_power_of_2(IntT x)
 {
     x -= 1;
     x |= (x >> 1);
     x |= (x >> 2);
     x |= (x >> 4);
 
-    if constexpr (sizeof(T) >= 2) {
+    if constexpr (sizeof(IntT) >= 2) {
         x |= (x >> 8);
     }
-    if constexpr (sizeof(T) >= 4) {
+    if constexpr (sizeof(IntT) >= 4) {
         x |= (x >> 16);
     }
-    if constexpr (sizeof(T) >= 8) {
+    if constexpr (sizeof(IntT) >= 8) {
         x |= (x >> 32);
     }
 
     return x + 1;
+}
+
+template<typename T> inline T log2_floor_u(T x)
+{
+    return x <= 1 ? 0 : 1 + log2_floor_u(x >> 1);
+}
+
+template<typename IntT> inline IntT log2_ceil_u(IntT x)
+{
+    if (is_power_of_2(x)) {
+        return log2_floor_u(x);
+    }
+    else {
+        return log2_floor_u(x) + 1;
+    }
 }
 
 template<typename T> inline uintptr_t ptr_to_int(T *ptr)

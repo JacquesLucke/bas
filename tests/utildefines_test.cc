@@ -44,3 +44,33 @@ TEST(util, CeilPowerOf2_sizet)
     EXPECT_EQ(ceil_power_of_2<size_t>(0), (size_t)0);
     EXPECT_EQ(ceil_power_of_2<size_t>(20), (size_t)32);
 }
+
+TEST(util, Log2FloorU)
+{
+    EXPECT_EQ(log2_floor_u(0), 0);
+    EXPECT_EQ(log2_floor_u(1), 0);
+    EXPECT_EQ(log2_floor_u(2), 1);
+    EXPECT_EQ(log2_floor_u(3), 1);
+    EXPECT_EQ(log2_floor_u(4), 2);
+    EXPECT_EQ(log2_floor_u(5), 2);
+    EXPECT_EQ(log2_floor_u(6), 2);
+    EXPECT_EQ(log2_floor_u(7), 2);
+    EXPECT_EQ(log2_floor_u(8), 3);
+    EXPECT_EQ(log2_floor_u(9), 3);
+    EXPECT_EQ(log2_floor_u(123456), 16);
+}
+
+TEST(util, Log2CeilU)
+{
+    EXPECT_EQ(log2_ceil_u(0), 0);
+    EXPECT_EQ(log2_ceil_u(1), 0);
+    EXPECT_EQ(log2_ceil_u(2), 1);
+    EXPECT_EQ(log2_ceil_u(3), 2);
+    EXPECT_EQ(log2_ceil_u(4), 2);
+    EXPECT_EQ(log2_ceil_u(5), 3);
+    EXPECT_EQ(log2_ceil_u(6), 3);
+    EXPECT_EQ(log2_ceil_u(7), 3);
+    EXPECT_EQ(log2_ceil_u(8), 3);
+    EXPECT_EQ(log2_ceil_u(9), 4);
+    EXPECT_EQ(log2_ceil_u(123456), 17);
+}
