@@ -463,16 +463,6 @@ template<typename T, typename Allocator = RawAllocator> class StringMap {
         }
         ITER_SLOTS_END(offset);
     }
-
-    template<typename ForwardT> void add__impl(StringRef key, ForwardT &&value)
-    {
-        this->ensure_can_add();
-        uint32_t hash = this->compute_string_hash(key);
-        ITER_SLOTS_BEGIN(hash, m_array, , item, offset)
-        {
-        }
-        ITER_SLOTS_END(offset);
-    }
 };
 
 #undef ITER_SLOTS_BEGIN
