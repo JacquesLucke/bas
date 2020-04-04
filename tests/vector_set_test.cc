@@ -35,8 +35,8 @@ TEST(vector_set, Copy)
     VectorSet<int> set2 = set1;
     EXPECT_EQ(set1.size(), 3u);
     EXPECT_EQ(set2.size(), 3u);
-    EXPECT_EQ(set1.index(2), 1);
-    EXPECT_EQ(set2.index(2), 1);
+    EXPECT_EQ(set1.index(2), 1u);
+    EXPECT_EQ(set2.index(2), 1u);
 }
 
 TEST(vector_set, Move)
@@ -68,9 +68,9 @@ TEST(vector_set, AddExistingDoesNotIncreaseSize)
 TEST(vector_set, Index)
 {
     VectorSet<int> set = {3, 6, 4};
-    EXPECT_EQ(set.index(6), 1);
-    EXPECT_EQ(set.index(3), 0);
-    EXPECT_EQ(set.index(4), 2);
+    EXPECT_EQ(set.index(6), 1u);
+    EXPECT_EQ(set.index(3), 0u);
+    EXPECT_EQ(set.index(4), 2u);
 }
 
 TEST(vector_set, IndexTry)

@@ -191,7 +191,7 @@ template<typename T, typename Allocator = RawAllocator> class VectorSet {
         ITER_SLOTS_BEGIN(value, m_array, , slot)
         {
             if (slot.has_value(value, m_elements)) {
-                uint32_t old_index = m_elements.size() - 1;
+                uint32_t old_index = (uint32_t)m_elements.size() - 1;
                 uint32_t new_index = slot.index();
 
                 m_elements.remove_and_reorder(new_index);
@@ -215,7 +215,7 @@ template<typename T, typename Allocator = RawAllocator> class VectorSet {
     {
         assert(this->size() > 0);
         T value = m_elements.pop_last();
-        uint32_t old_index = m_elements.size();
+        uint32_t old_index = (uint32_t)m_elements.size();
 
         ITER_SLOTS_BEGIN(value, m_array, , slot)
         {
@@ -322,7 +322,7 @@ template<typename T, typename Allocator = RawAllocator> class VectorSet {
     template<typename ForwardT>
     void add_new_in_slot(Slot &slot, ForwardT &&value)
     {
-        uint32_t index = m_elements.size();
+        uint32_t index = (uint32_t)m_elements.size();
         slot.set_index(index);
         m_elements.append_unchecked(std::forward<ForwardT>(value));
         m_array.update__empty_to_set();
@@ -339,7 +339,7 @@ template<typename T, typename Allocator = RawAllocator> class VectorSet {
     {
         ArrayType new_array = m_array.init_reserved(min_usable_slots);
 
-        for (uint32_t i = 0; i < m_elements.size(); i++) {
+        for (uint32_t i = 0; i < (uint32_t)m_elements.size(); i++) {
             this->add_after_grow(i, new_array);
         }
 
@@ -362,7 +362,7 @@ template<typename T, typename Allocator = RawAllocator> class VectorSet {
 
     float compute_average_collisions() const
     {
-        if (m_elements.size() == 0) {
+        if (m_elements.size() == 0u) {
             return 0.0f;
         }
 
