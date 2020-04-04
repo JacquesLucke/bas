@@ -53,7 +53,7 @@ TEST(map, AddMany)
 {
     Map<int, float> map;
     for (int i = 0; i < 100; i++) {
-        map.add(i, i);
+        map.add(i, (float)i);
     }
 }
 
@@ -78,7 +78,7 @@ TEST(map, PopItemMany)
 {
     Map<int, float> map;
     for (int i = 0; i < 100; i++) {
-        map.add_new(i, i);
+        map.add_new(i, (float)i);
     }
     for (int i = 25; i < 80; i++) {
         EXPECT_EQ(map.pop(i), i);
@@ -226,7 +226,7 @@ TEST(map, MoveConstructorLarge)
 {
     Map<int, float> map1;
     for (int i = 0; i < 100; i++) {
-        map1.add_new(i, i);
+        map1.add_new(i, (float)i);
     }
     Map<int, float> map2(std::move(map1));
     EXPECT_EQ(map2.size(), 100u);
