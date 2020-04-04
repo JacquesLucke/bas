@@ -45,6 +45,19 @@ TEST(util, CeilPowerOf2_sizet)
     EXPECT_EQ(ceil_power_of_2<size_t>(20), (size_t)32);
 }
 
+TEST(util, FloorPowerOf2)
+{
+    EXPECT_EQ(floor_power_of_2<uint32_t>(0), (uint32_t)0);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(1), (uint32_t)1);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(2), (uint32_t)2);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(3), (uint32_t)2);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(4), (uint32_t)4);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(5), (uint32_t)4);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(6), (uint32_t)4);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(7), (uint32_t)4);
+    EXPECT_EQ(floor_power_of_2<uint32_t>(8), (uint32_t)8);
+}
+
 TEST(util, Log2FloorU)
 {
     EXPECT_EQ(log2_floor_u(0), 0);

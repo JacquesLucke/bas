@@ -39,7 +39,7 @@ template<typename IntT> inline bool is_power_of_2(IntT x)
     return (x & (x - 1)) == 0;
 }
 
-template<typename IntT> IntT ceil_power_of_2(IntT x)
+template<typename IntT> inline IntT ceil_power_of_2(IntT x)
 {
     x -= 1;
     x |= (x >> 1);
@@ -57,6 +57,25 @@ template<typename IntT> IntT ceil_power_of_2(IntT x)
     }
 
     return x + 1;
+}
+
+template<typename IntT> inline IntT floor_power_of_2(IntT x)
+{
+    x |= (x >> 1);
+    x |= (x >> 2);
+    x |= (x >> 4);
+
+    if constexpr (sizeof(IntT) >= 2) {
+        x |= (x >> 8);
+    }
+    if constexpr (sizeof(IntT) >= 4) {
+        x |= (x >> 16);
+    }
+    if constexpr (sizeof(IntT) >= 8) {
+        x |= (x >> 32);
+    }
+
+    return x - (x >> 1);
 }
 
 template<typename T> inline T log2_floor_u(T x)
@@ -89,5 +108,31 @@ template<typename T> inline bool is_aligned(T *ptr, size_t alignment)
     assert(is_power_of_2(alignment));
     return (ptr_to_int(ptr) & (alignment - 1)) == 0;
 }
+
+class NonCopyable {
+  public:
+    /* Disable copy construction and assignment. */
+    NonCopyable(const NonCopyable &other) = delete;
+    NonCopyable &operator=(const NonCopyable &other) = delete;
+
+    /* Explicitly enable default construction, move construction and move
+     * assignment. */
+    NonCopyable() = default;
+    NonCopyable(NonCopyable &&other) = default;
+    NonCopyable &operator=(NonCopyable &&other) = default;
+};
+
+class NonMovable {
+  public:
+    /* Disable move construction and assignment. */
+    NonMovable(NonMovable &&other) = delete;
+    NonMovable &operator=(NonMovable &&other) = delete;
+
+    /* Explicitly enable default construction, copy construction and copy
+     * assignment. */
+    NonMovable() = default;
+    NonMovable(const NonMovable &other) = default;
+    NonMovable &operator=(const NonMovable &other) = default;
+};
 
 }  // namespace bas

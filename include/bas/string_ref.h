@@ -63,10 +63,26 @@ class StringRefBase {
         return m_data + m_size;
     }
 
-    void copy_to__with_null(char *dst) const
+    void unsafe_copy(char *dst) const
     {
         memcpy(dst, m_data, m_size);
         dst[m_size] = '\0';
+    }
+
+    void copy(char *dst, uint dst_size) const
+    {
+        if (m_size < dst_size) {
+            this->unsafe_copy(dst);
+        }
+        else {
+            assert(false);
+            dst[0] = '\0';
+        }
+    }
+
+    template<size_t N> void copy(char (&dst)[N])
+    {
+        this->copy(dst, N);
     }
 
     /**
@@ -340,7 +356,7 @@ inline StringRef StringRefBase::strip(ArrayRef<char> chars) const
 inline float StringRefBase::to_float(bool *r_success) const
 {
     char *str_with_null = (char *)alloca(m_size + 1);
-    this->copy_to__with_null(str_with_null);
+    this->unsafe_copy(str_with_null);
     char *end;
     float value = std::strtof(str_with_null, &end);
     if (r_success) {
@@ -352,7 +368,7 @@ inline float StringRefBase::to_float(bool *r_success) const
 inline int StringRefBase::to_int(bool *r_success) const
 {
     char *str_with_null = (char *)alloca(m_size + 1);
-    this->copy_to__with_null(str_with_null);
+    this->unsafe_copy(str_with_null);
     char *end;
     int value = std::strtol(str_with_null, &end, 10);
     if (r_success) {

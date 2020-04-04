@@ -31,6 +31,7 @@ SET(BAS_TEST_SRC
     tests/array_ref_test.cc
     tests/array_test.cc
     tests/index_range_test.cc
+    tests/linear_allocator_test.cc
     tests/map_test.cc
     tests/set_test.cc
     tests/stack_test.cc
