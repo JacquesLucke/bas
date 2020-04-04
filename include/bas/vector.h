@@ -570,7 +570,7 @@ class Vector {
         /* Round up to the next power of two. Otherwise consecutive calls to
          * grow can cause a reallocation every time even though the
          * min_capacity only increments. */
-        min_capacity = ceil_power_of_2(min_capacity);
+        min_capacity = ceil_power_of_2<size_t>(min_capacity);
 
         size_t size = this->size();
 

@@ -31,7 +31,9 @@ inline bool is_power_of_2(size_t x)
     return (x & (x - 1)) == 0;
 }
 
-inline uint32_t ceil_power_of_2(uint32_t x)
+template<typename T> T ceil_power_of_2(T x);
+
+template<> inline uint32_t ceil_power_of_2(uint32_t x)
 {
     x -= 1;
     x |= (x >> 1);
@@ -42,7 +44,7 @@ inline uint32_t ceil_power_of_2(uint32_t x)
     return x + 1;
 }
 
-inline uint64_t ceil_power_of_2(uint64_t x)
+template<> inline uint64_t ceil_power_of_2(uint64_t x)
 {
     x -= 1;
     x |= (x >> 1);
