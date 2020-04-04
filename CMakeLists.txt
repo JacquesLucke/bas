@@ -33,6 +33,7 @@ SET(BAS_TEST_SRC
     tests/index_range_test.cc
     tests/linear_allocator_test.cc
     tests/map_test.cc
+    tests/multi_map_test.cc
     tests/set_test.cc
     tests/stack_test.cc
     tests/string_map_test.cc
