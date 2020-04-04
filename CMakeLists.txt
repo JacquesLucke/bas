@@ -34,6 +34,7 @@ SET(BAS_TEST_SRC
     tests/map_test.cc
     tests/set_test.cc
     tests/stack_test.cc
+    tests/string_map_test.cc
     tests/string_ref_test.cc
     tests/utildefines_test.cc
     tests/vector_set_test.cc
