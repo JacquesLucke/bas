@@ -21,16 +21,16 @@ TEST(util, IsPowerOf2)
 
 TEST(util, CeilPowerOf2_u32)
 {
-    EXPECT_EQ(ceil_power_of_2<uint32_t>(1), 1);
-    EXPECT_EQ(ceil_power_of_2<uint32_t>(5), 8);
-    EXPECT_EQ(ceil_power_of_2<uint32_t>(0), 0);
-    EXPECT_EQ(ceil_power_of_2<uint32_t>(20), 32);
+    EXPECT_EQ(ceil_power_of_2<uint32_t>(1), (uint32_t)1);
+    EXPECT_EQ(ceil_power_of_2<uint32_t>(5), (uint32_t)8);
+    EXPECT_EQ(ceil_power_of_2<uint32_t>(0), (uint32_t)0);
+    EXPECT_EQ(ceil_power_of_2<uint32_t>(20), (uint32_t)32);
 }
 
 TEST(util, CeilPowerOf2_u64)
 {
-    EXPECT_EQ(ceil_power_of_2<uint64_t>(1), 1);
-    EXPECT_EQ(ceil_power_of_2<uint64_t>(5), 8);
-    EXPECT_EQ(ceil_power_of_2<uint64_t>(0), 0);
-    EXPECT_EQ(ceil_power_of_2<uint64_t>(20), 32);
+    EXPECT_EQ(ceil_power_of_2<uint64_t>(1), (uint64_t)1);
+    EXPECT_EQ(ceil_power_of_2<uint64_t>(5), (uint64_t)8);
+    EXPECT_EQ(ceil_power_of_2<uint64_t>(0), (uint64_t)0);
+    EXPECT_EQ(ceil_power_of_2<uint64_t>(20), (uint64_t)32);
 }

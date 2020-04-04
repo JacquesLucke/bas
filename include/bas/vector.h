@@ -3,6 +3,7 @@
 #include "allocator.h"
 #include "array_ref.h"
 #include "memory_utils.h"
+#include "utildefines.h"
 
 namespace bas {
 

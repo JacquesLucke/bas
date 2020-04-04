@@ -22,8 +22,14 @@ namespace bas {
 using std::size_t;
 using ssize_t = std::make_signed_t<size_t>;
 
+using std::int16_t;
 using std::int32_t;
+using std::int64_t;
+using std::int8_t;
+using std::uint16_t;
 using std::uint32_t;
+using std::uint64_t;
+using std::uint8_t;
 
 /* True is returned for powers of two and zero. */
 inline bool is_power_of_2(size_t x)
