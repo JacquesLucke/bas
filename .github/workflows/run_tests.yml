@@ -44,7 +44,7 @@ jobs:
       - run: mkdir build
       - run: cmake ..
         working-directory: build
-      - run: devenv bas.sln /build Debug
+      - run: msbuild bas.sln /t:Build /p:Configuration=Debug
         working-directory: build
 
       - run: .\build\Debug\tests.exe
