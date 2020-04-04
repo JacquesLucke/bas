@@ -5,7 +5,9 @@
 #include "index_range.h"
 #include "memory_utils.h"
 
-#pragma warning(disable : 4324)
+#if defined(_MSC_VER)
+#    pragma warning(disable : 4324)
+#endif
 
 namespace bas {
 
