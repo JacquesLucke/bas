@@ -37,28 +37,23 @@ inline bool is_power_of_2(size_t x)
     return (x & (x - 1)) == 0;
 }
 
-template<typename T> T ceil_power_of_2(T x);
-
-template<> inline uint32_t ceil_power_of_2(uint32_t x)
+template<typename T> T ceil_power_of_2(T x)
 {
     x -= 1;
     x |= (x >> 1);
     x |= (x >> 2);
     x |= (x >> 4);
-    x |= (x >> 8);
-    x |= (x >> 16);
-    return x + 1;
-}
 
-template<> inline uint64_t ceil_power_of_2(uint64_t x)
-{
-    x -= 1;
-    x |= (x >> 1);
-    x |= (x >> 2);
-    x |= (x >> 4);
-    x |= (x >> 8);
-    x |= (x >> 16);
-    x |= (x >> 32);
+    if constexpr (sizeof(T) >= 2) {
+        x |= (x >> 8);
+    }
+    if constexpr (sizeof(T) >= 4) {
+        x |= (x >> 16);
+    }
+    if constexpr (sizeof(T) >= 8) {
+        x |= (x >> 32);
+    }
+
     return x + 1;
 }
 
