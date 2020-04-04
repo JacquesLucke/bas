@@ -19,6 +19,8 @@ namespace bas {
 #    define BAS_UNLIKELY(x) (x)
 #endif
 
+#define BAS_UNUSED_VAR(x) ((void)x)
+
 using std::size_t;
 using ssize_t = std::make_signed_t<size_t>;
 

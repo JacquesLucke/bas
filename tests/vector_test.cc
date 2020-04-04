@@ -416,6 +416,6 @@ TEST(vector, UniquePtrValue)
     std::unique_ptr<int> b = vec.pop_last();
     vec.remove_and_reorder(0);
 
-    ((void)a);
-    ((void)b);
+    BAS_UNUSED_VAR(a);
+    BAS_UNUSED_VAR(b);
 }
