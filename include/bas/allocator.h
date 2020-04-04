@@ -13,7 +13,7 @@ class RawAllocator {
         return aligned_malloc(size, alignment);
     }
 
-    template<size_t Alignment> void *allocate(size_t size) const
+    template<size_t Alignment> void *allocate(size_t   size) const
     {
         return this->allocate(size, Alignment);
     }
