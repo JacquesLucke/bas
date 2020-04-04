@@ -6,7 +6,7 @@ using namespace bas;
 TEST(set, Defaultconstructor)
 {
     Set<int> set;
-    EXPECT_EQ(set.size(), 0);
+    EXPECT_EQ(set.size(), 0u);
 }
 
 TEST(set, ContainsNotExistant)
@@ -41,7 +41,7 @@ TEST(set, AddMany)
 TEST(set, InitializerListConstructor)
 {
     Set<int> set = {4, 5, 6};
-    EXPECT_EQ(set.size(), 3);
+    EXPECT_EQ(set.size(), 3u);
     EXPECT_TRUE(set.contains(4));
     EXPECT_TRUE(set.contains(5));
     EXPECT_TRUE(set.contains(6));
@@ -66,10 +66,10 @@ TEST(set, CopyConstructor)
 TEST(set, MoveConstructor)
 {
     Set<int> set = {1, 2, 3};
-    EXPECT_EQ(set.size(), 3);
+    EXPECT_EQ(set.size(), 3u);
     Set<int> set2 = std::move(set);
-    EXPECT_EQ(set.size(), 0);
-    EXPECT_EQ(set2.size(), 3);
+    EXPECT_EQ(set.size(), 0u);
+    EXPECT_EQ(set2.size(), 3u);
 }
 
 TEST(set, Remove)
@@ -95,17 +95,17 @@ TEST(set, Remove)
 TEST(set, RemoveMany)
 {
     Set<int> set;
-    for (uint i = 0; i < 1000; i++) {
+    for (int i = 0; i < 1000; i++) {
         set.add(i);
     }
-    for (uint i = 100; i < 1000; i++) {
+    for (int i = 100; i < 1000; i++) {
         set.remove(i);
     }
-    for (uint i = 900; i < 1000; i++) {
+    for (int i = 900; i < 1000; i++) {
         set.add(i);
     }
 
-    for (uint i = 0; i < 1000; i++) {
+    for (int i = 0; i < 1000; i++) {
         if (i < 100 || i >= 900) {
             EXPECT_TRUE(set.contains(i));
         }
@@ -141,7 +141,7 @@ TEST(set, AddMultiple)
     a.add_multiple({2, 4, 7});
     EXPECT_TRUE(a.contains(4));
     EXPECT_TRUE(a.contains(2));
-    EXPECT_EQ(a.size(), 4);
+    EXPECT_EQ(a.size(), 4u);
 }
 
 TEST(set, AddMultipleNew)
@@ -156,7 +156,7 @@ TEST(set, ToVector)
 {
     Set<int> a = {5, 2, 8};
     Vector<int> vec = a.to_vector();
-    EXPECT_EQ(vec.size(), 3);
+    EXPECT_EQ(vec.size(), 3u);
     EXPECT_TRUE(vec.contains(5));
     EXPECT_TRUE(vec.contains(2));
     EXPECT_TRUE(vec.contains(8));
@@ -169,7 +169,7 @@ TEST(set, Iterator)
     for (int value : set) {
         vec.append(value);
     }
-    EXPECT_EQ(vec.size(), 5);
+    EXPECT_EQ(vec.size(), 5u);
     EXPECT_TRUE(vec.contains(1));
     EXPECT_TRUE(vec.contains(3));
     EXPECT_TRUE(vec.contains(2));
@@ -182,9 +182,9 @@ TEST(set, OftenAddRemove)
     Set<int> set;
     for (int i = 0; i < 100; i++) {
         set.add(42);
-        EXPECT_EQ(set.size(), 1);
+        EXPECT_EQ(set.size(), 1u);
         set.remove(42);
-        EXPECT_EQ(set.size(), 0);
+        EXPECT_EQ(set.size(), 0u);
     }
 }
 
@@ -196,5 +196,5 @@ TEST(set, UniquePtrValues)
     set.add_new(std::move(value1));
     set.add(std::unique_ptr<int>(new int()));
 
-    EXPECT_EQ(set.size(), 3);
+    EXPECT_EQ(set.size(), 3u);
 }

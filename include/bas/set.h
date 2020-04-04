@@ -29,8 +29,8 @@ namespace bas {
 
 template<typename T, typename Allocator = RawAllocator> class Set {
   private:
-    static constexpr uint OFFSET_MASK = 3;
-    static constexpr uint OFFSET_SHIFT = 2;
+    static constexpr uint32_t OFFSET_MASK = 3;
+    static constexpr uint32_t OFFSET_SHIFT = 2;
 
     class Item {
       private:
@@ -42,18 +42,18 @@ template<typename T, typename Allocator = RawAllocator> class Set {
         char m_values[4 * sizeof(T)];
 
       public:
-        static constexpr uint slots_per_item = 4;
+        static constexpr uint32_t slots_per_item = 4;
 
         Item()
         {
-            for (uint offset = 0; offset < 4; offset++) {
+            for (uint32_t offset = 0; offset < 4; offset++) {
                 m_status[offset] = IS_EMPTY;
             }
         }
 
         ~Item()
         {
-            for (uint offset = 0; offset < 4; offset++) {
+            for (uint32_t offset = 0; offset < 4; offset++) {
                 if (m_status[offset] == IS_SET) {
                     destruct(this->value(offset));
                 }
@@ -62,7 +62,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
 
         Item(const Item &other)
         {
-            for (uint offset = 0; offset < 4; offset++) {
+            for (uint32_t offset = 0; offset < 4; offset++) {
                 uint8_t status = other.m_status[offset];
                 m_status[offset] = status;
                 if (status == IS_SET) {
@@ -75,7 +75,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
 
         Item(Item &&other) noexcept
         {
-            for (uint offset = 0; offset < 4; offset++) {
+            for (uint32_t offset = 0; offset < 4; offset++) {
                 uint8_t status = other.m_status[offset];
                 m_status[offset] = status;
                 if (status == IS_SET) {
@@ -89,12 +89,13 @@ template<typename T, typename Allocator = RawAllocator> class Set {
         Item &operator=(const Item &other) = delete;
         Item &operator=(Item &&other) = delete;
 
-        T *value(uint offset) const
+        T *value(uint32_t offset) const
         {
             return (T *)(m_values + offset * sizeof(T));
         }
 
-        template<typename ForwardT> void store(uint offset, ForwardT &&value)
+        template<typename ForwardT>
+        void store(uint32_t offset, ForwardT &&value)
         {
             assert(m_status[offset] != IS_SET);
             m_status[offset] = IS_SET;
@@ -102,29 +103,29 @@ template<typename T, typename Allocator = RawAllocator> class Set {
             new (dst) T(std::forward<ForwardT>(value));
         }
 
-        void set_dummy(uint offset)
+        void set_dummy(uint32_t offset)
         {
             assert(m_status[offset] == IS_SET);
             m_status[offset] = IS_DUMMY;
             destruct(this->value(offset));
         }
 
-        bool is_empty(uint offset) const
+        bool is_empty(uint32_t offset) const
         {
             return m_status[offset] == IS_EMPTY;
         }
 
-        bool is_set(uint offset) const
+        bool is_set(uint32_t offset) const
         {
             return m_status[offset] == IS_SET;
         }
 
-        bool is_dummy(uint offset) const
+        bool is_dummy(uint32_t offset) const
         {
             return m_status[offset] == IS_DUMMY;
         }
 
-        bool has_value(uint offset, const T &value) const
+        bool has_value(uint32_t offset, const T &value) const
         {
             return m_status[offset] == IS_SET && *this->value(offset) == value;
         }
@@ -141,7 +142,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
      */
     Set(ArrayRef<T> values)
     {
-        this->reserve(values.size());
+        this->reserve((uint32_t)values.size());
         for (const T &value : values) {
             this->add(value);
         }
@@ -296,7 +297,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
         uint32_t item_index = 0;
         for (const Item &item : m_array) {
             std::cout << "   Item: " << item_index++ << '\n';
-            for (uint offset = 0; offset < 4; offset++) {
+            for (uint32_t offset = 0; offset < 4; offset++) {
                 std::cout << "    " << offset << " \t";
                 if (item.is_empty(offset)) {
                     std::cout << "    <empty>\n";
@@ -333,7 +334,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
         const T &operator*() const
         {
             uint32_t item_index = m_slot >> OFFSET_SHIFT;
-            uint offset = m_slot & OFFSET_MASK;
+            uint32_t offset = m_slot & OFFSET_MASK;
             const Item &item = m_set->m_array.item(item_index);
             assert(item.is_set(offset));
             return *item.value(offset);
@@ -368,7 +369,7 @@ template<typename T, typename Allocator = RawAllocator> class Set {
     {
         for (; slot < m_array.slots_total(); slot++) {
             uint32_t item_index = slot >> OFFSET_SHIFT;
-            uint offset = slot & OFFSET_MASK;
+            uint32_t offset = slot & OFFSET_MASK;
             const Item &item = m_array.item(item_index);
             if (item.is_set(offset)) {
                 return slot;
