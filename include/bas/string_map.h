@@ -392,8 +392,8 @@ template<typename T, typename Allocator = RawAllocator> class StringMap {
 
     uint32_t save_key_in_array(StringRef key)
     {
-        uint32_t index = m_chars.size();
-        uint32_t string_size = key.size();
+        uint32_t index = (uint32_t)m_chars.size();
+        uint32_t string_size = (uint32_t)key.size();
         m_chars.extend(ArrayRef<char>((char *)&string_size, sizeof(uint32_t)));
         m_chars.extend(key);
         m_chars.append('\0');

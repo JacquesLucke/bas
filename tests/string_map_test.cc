@@ -76,7 +76,7 @@ TEST(string_map, AddNew_Many)
 {
     StringMap<int> map;
 
-    for (uint i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++) {
         map.add_new(std::to_string(i), i);
     }
     EXPECT_EQ(map.size(), 100u);
@@ -95,14 +95,14 @@ TEST(string_map, Contains)
 TEST(string_map, Contains_Many)
 {
     StringMap<int> map;
-    for (uint i = 0; i < 50; i++) {
+    for (int i = 0; i < 50; i++) {
         map.add_new(std::to_string(i), i);
     }
-    for (uint i = 100; i < 200; i++) {
+    for (int i = 100; i < 200; i++) {
         map.add_new(std::to_string(i), i);
     }
     EXPECT_EQ(map.size(), 150u);
-    for (uint i = 0; i < 200; i++) {
+    for (int i = 0; i < 200; i++) {
         if (i < 50 || i >= 100) {
             EXPECT_TRUE(map.contains(std::to_string(i)));
         }
