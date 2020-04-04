@@ -29,6 +29,7 @@ SET(BAS_TEST_SRC
     tests/aligned_allocation_test.cc
     tests/allocator_test.cc
     tests/array_ref_test.cc
+    tests/array_test.cc
     tests/index_range_test.cc
     tests/stack_test.cc
     tests/string_ref_test.cc

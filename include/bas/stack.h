@@ -4,7 +4,7 @@
 
 namespace bas {
 
-template<typename T, uint N = 4, typename Allocator = RawAllocator>
+template<typename T, size_t N = 4, typename Allocator = RawAllocator>
 class Stack {
   private:
     Vector<T, N, Allocator> m_elements;
@@ -28,7 +28,7 @@ class Stack {
     /**
      * Return the number of elements in the stack.
      */
-    uint size() const
+    size_t size() const
     {
         return m_elements.size();
     }

@@ -84,7 +84,7 @@ class StringRefBase {
     bool endswith(StringRef suffix) const;
     bool endswith(char c) const;
 
-    StringRef substr(uint start, uint size) const;
+    StringRef substr(size_t start, size_t size) const;
 
     StringRef lstrip(ArrayRef<char> chars = {' ', '\t', '\n', '\r'}) const;
     StringRef rstrip(ArrayRef<char> chars = {' ', '\t', '\n', '\r'}) const;
@@ -95,8 +95,8 @@ class StringRefBase {
 
     bool contains(char c) const;
 
-    uint first_index_of(char c, uint start = 0) const;
-    int try_first_index_of(char c, uint start = 0) const;
+    size_t first_index_of(char c, size_t start = 0) const;
+    ssize_t try_first_index_of(char c, size_t start = 0) const;
 };
 
 /**
@@ -126,7 +126,7 @@ class StringRefNull : public StringRefBase {
 
     StringRefNull lstrip(ArrayRef<char> chars = {' ', '\t', '\r', '\n'}) const
     {
-        for (uint i = 0; i < m_size; i++) {
+        for (size_t i = 0; i < m_size; i++) {
             char c = m_data[i];
             if (!chars.contains(c)) {
                 return StringRefNull(m_data + i, m_size - i);
@@ -164,7 +164,7 @@ class StringRef : public StringRefBase {
     /**
      * Return a new StringRef that does not contain the first n chars.
      */
-    StringRef drop_prefix(uint n) const
+    StringRef drop_prefix(size_t n) const
     {
         assert(n <= m_size);
         return StringRef(m_data + n, m_size - n);
@@ -180,7 +180,7 @@ class StringRef : public StringRefBase {
         return this->drop_prefix(prefix.size());
     }
 
-    StringRef drop_suffix(uint n) const
+    StringRef drop_suffix(size_t n) const
     {
         assert(n <= m_size);
         return StringRef(m_data, m_size - n);
@@ -236,7 +236,7 @@ inline bool StringRefBase::startswith(StringRef prefix) const
     if (m_size < prefix.m_size) {
         return false;
     }
-    for (uint i = 0; i < prefix.m_size; i++) {
+    for (size_t i = 0; i < prefix.m_size; i++) {
         if (m_data[i] != prefix.m_data[i]) {
             return false;
         }
@@ -263,7 +263,7 @@ inline bool StringRefBase::startswith_lower_ascii(StringRef prefix) const
     if (m_size < prefix.m_size) {
         return false;
     }
-    for (uint i = 0; i < prefix.m_size; i++) {
+    for (size_t i = 0; i < prefix.m_size; i++) {
         char c = tolower_ascii(m_data[i]);
         if (c != prefix.m_data[i]) {
             return false;
@@ -285,8 +285,8 @@ inline bool StringRefBase::endswith(StringRef suffix) const
     if (m_size < suffix.m_size) {
         return false;
     }
-    uint offset = m_size - suffix.m_size;
-    for (uint i = 0; i < suffix.m_size; i++) {
+    size_t offset = m_size - suffix.m_size;
+    for (size_t i = 0; i < suffix.m_size; i++) {
         if (m_data[offset + i] != suffix.m_data[i]) {
             return false;
         }
@@ -302,7 +302,7 @@ inline bool StringRefBase::endswith(char c) const
     return m_data[m_size - 1] == c;
 }
 
-inline StringRef StringRefBase::substr(uint start, uint size) const
+inline StringRef StringRefBase::substr(size_t start, size_t size) const
 {
     assert(start + size <= m_size);
     return StringRef(m_data + start, size);
@@ -310,7 +310,7 @@ inline StringRef StringRefBase::substr(uint start, uint size) const
 
 inline StringRef StringRefBase::lstrip(ArrayRef<char> chars) const
 {
-    for (uint i = 0; i < m_size; i++) {
+    for (size_t i = 0; i < m_size; i++) {
         char c = m_data[i];
         if (!chars.contains(c)) {
             return StringRef(m_data + i, m_size - i);
@@ -321,7 +321,7 @@ inline StringRef StringRefBase::lstrip(ArrayRef<char> chars) const
 
 inline StringRef StringRefBase::rstrip(ArrayRef<char> chars) const
 {
-    for (int i = m_size - 1; i >= 0; i--) {
+    for (ssize_t i = m_size - 1; i >= 0; i--) {
         char c = m_data[i];
         if (!chars.contains(c)) {
             return StringRef(m_data, i + 1);
@@ -366,16 +366,16 @@ inline bool StringRefBase::contains(char c) const
     return this->try_first_index_of(c) >= 0;
 }
 
-inline uint StringRefBase::first_index_of(char c, uint start) const
+inline size_t StringRefBase::first_index_of(char c, size_t start) const
 {
-    int index = this->try_first_index_of(c, start);
+    ssize_t index = this->try_first_index_of(c, start);
     assert(index >= 0);
-    return (uint)index;
+    return (size_t)index;
 }
 
-inline int StringRefBase::try_first_index_of(char c, uint start) const
+inline ssize_t StringRefBase::try_first_index_of(char c, size_t start) const
 {
-    for (uint i = start; i < m_size; i++) {
+    for (size_t i = start; i < m_size; i++) {
         if (m_data[i] == c) {
             return i;
         }
