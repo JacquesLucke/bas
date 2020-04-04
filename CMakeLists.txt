@@ -52,7 +52,7 @@ target_link_libraries(tests gtest)
 
 # Generate many warnings.
 if(MSVC)
-  target_compile_options(tests PRIVATE /W4)
+  target_compile_options(tests PRIVATE /W4 /WX)
 else()
   target_compile_options(tests PRIVATE -Wall -Wextra -pedantic -Werror)
 endif()

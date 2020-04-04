@@ -5,6 +5,8 @@
 #include "index_range.h"
 #include "memory_utils.h"
 
+#pragma warning(disable : 4324)
+
 namespace bas {
 
 template<typename T, size_t N = 4, typename Allocator = RawAllocator>

@@ -5,6 +5,8 @@
 #include "memory_utils.h"
 #include "utildefines.h"
 
+#pragma warning(disable : 4324)
+
 namespace bas {
 
 template<typename T, size_t N = 4, typename Allocator = RawAllocator>
